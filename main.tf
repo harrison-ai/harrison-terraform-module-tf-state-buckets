@@ -34,6 +34,19 @@ resource "aws_s3_bucket_versioning" "this" {
   }
 }
 
+resource "aws_s3_bucket_ownership_controls" "this" {
+  bucket = aws_s3_bucket.this.id
+
+  rule {
+    object_ownership = var.object_ownership
+  }
+
+  depends_on = [
+    aws_s3_bucket.this,
+    aws_s3_bucket_public_access_block.this
+  ]
+}
+
 resource "aws_dynamodb_table" "this" {
   name         = var.bucket_name
   hash_key     = "LockID"

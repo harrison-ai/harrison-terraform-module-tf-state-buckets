@@ -12,7 +12,7 @@ ci-fmt:
 	docker-compose run --rm --workdir /app terraform fmt -recursive -check -diff -write=false
 
 tf-shell:
-	docker-compose run --rm terraform /bin/ash
+	docker-compose run --rm --entrypoint /bin/ash terraform
 
 pull:
 	docker-compose pull

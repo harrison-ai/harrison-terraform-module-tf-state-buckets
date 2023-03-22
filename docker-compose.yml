@@ -9,7 +9,7 @@ services:
     working_dir: '/app'
 
   terraform-docs:
-    image: cytopia/terraform-docs
+    image: cytopia/terraform-docs:0.13.0
     volumes:
       - '.:/app'
     working_dir: '/app'

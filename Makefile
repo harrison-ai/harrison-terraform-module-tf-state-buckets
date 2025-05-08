@@ -6,19 +6,19 @@ TF_VERSION := $(shell cat .tf_version)
 	export TF_VERSION=${TF_VERSION}
 
 fmt:
-	docker-compose run --rm terraform fmt -recursive
+	docker compose run --rm terraform fmt -recursive
 
 ci-fmt:
-	docker-compose run --rm --workdir /app terraform fmt -recursive -check -diff -write=false
+	docker compose run --rm --workdir /app terraform fmt -recursive -check -diff -write=false
 
 tf-shell:
-	docker-compose run --rm --entrypoint /bin/ash terraform
+	docker compose run --rm --entrypoint /bin/ash terraform
 
 pull:
-	docker-compose pull
+	docker compose pull
 
 docs:
-	docker-compose run --rm terraform-docs terraform-docs-replace md README.md
+	docker compose run --rm terraform-docs terraform-docs-replace md README.md
 
 update-tf:
 	bash scripts/update-tf.sh

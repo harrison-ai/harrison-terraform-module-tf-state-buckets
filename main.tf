@@ -1,8 +1,14 @@
+locals {
+  tags = merge(
+    {
+      Name = var.bucket_name
+    }, var.tags
+  )
+}
+
 resource "aws_s3_bucket" "this" {
   bucket = var.bucket_name
-  tags = {
-    Name = var.bucket_name
-  }
+  tags   = local.tags
 }
 
 resource "aws_s3_bucket_acl" "this" {
@@ -59,7 +65,5 @@ resource "aws_dynamodb_table" "this" {
     type = "S"
   }
 
-  tags = {
-    Name = var.bucket_name
-  }
+  tags = local.tags
 }
